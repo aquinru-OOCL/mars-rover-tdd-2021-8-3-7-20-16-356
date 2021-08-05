@@ -23,6 +23,10 @@ public class MarsRover{
             locationY = roverStatus.getLocationY() + 1;
             roverStatus = new RoverStatus(roverStatus.getLocationX(), locationY, roverStatus.getDirection());
         }
+        if ("S".equals(roverStatus.getDirection())) {
+            locationY = roverStatus.getLocationY() - 1;
+            roverStatus = new RoverStatus(roverStatus.getLocationX(), locationY, roverStatus.getDirection());
+        }
     }
 
 }

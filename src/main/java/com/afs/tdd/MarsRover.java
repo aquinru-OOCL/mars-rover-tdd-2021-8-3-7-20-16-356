@@ -16,6 +16,9 @@ public class MarsRover{
 
     }
 
+    public void executeCommands(String commands) {
+    }
+
     public void executeCommand(String command) {
         locationX = roverStatus.getLocationX();
         locationY = roverStatus.getLocationY();

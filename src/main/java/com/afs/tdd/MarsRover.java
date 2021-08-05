@@ -2,6 +2,9 @@ package com.afs.tdd;
 
 public class MarsRover{
     private RoverStatus roverStatus;
+    private int locationX;
+    private int locationY;
+    private String direction;
 
     public MarsRover(RoverStatus roverStatus) {
         this.roverStatus = roverStatus;
@@ -9,9 +12,14 @@ public class MarsRover{
 
     public RoverStatus getRoverStatus() {
         return roverStatus;
+
     }
 
     public void executeCommand(String command) {
+        locationX = roverStatus.getLocationX();
+        locationY = roverStatus.getLocationY();
+        direction = roverStatus.getDirection();
+
         switch (command) {
             case "M":
                 move();
@@ -26,22 +34,23 @@ public class MarsRover{
     }
 
     private void move() {
-        int locationX, locationY;
-        if ("N".equals(roverStatus.getDirection())) {
-            locationY = roverStatus.getLocationY() + 1;
-            roverStatus = new RoverStatus(roverStatus.getLocationX(), locationY, roverStatus.getDirection());
-        }
-        if ("S".equals(roverStatus.getDirection())) {
-            locationY = roverStatus.getLocationY() - 1;
-            roverStatus = new RoverStatus(roverStatus.getLocationX(), locationY, roverStatus.getDirection());
-        }
-        if ("E".equals(roverStatus.getDirection())) {
-            locationX = roverStatus.getLocationX() + 1;
-            roverStatus = new RoverStatus(locationX, roverStatus.getLocationX(), roverStatus.getDirection());
-        }
-        if ("W".equals(roverStatus.getDirection())) {
-            locationX = roverStatus.getLocationX() - 1;
-            roverStatus = new RoverStatus(locationX, roverStatus.getLocationX(), roverStatus.getDirection());
+        switch (roverStatus.getDirection()) {
+            case "N":
+                locationY++;
+                roverStatus = new RoverStatus(locationX, locationY, direction);
+                break;
+            case "S":
+                locationY--;
+                roverStatus = new RoverStatus(locationX, locationY, direction);
+                break;
+            case "E":
+                locationX++;
+                roverStatus = new RoverStatus(locationX, locationY, direction);
+                break;
+            case "W":
+                locationX--;
+                roverStatus = new RoverStatus(locationX, locationY, direction);
+                break;
         }
     }
 

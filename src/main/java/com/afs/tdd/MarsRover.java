@@ -17,6 +17,9 @@ public class MarsRover{
     }
 
     public void executeCommands(String commands) {
+        for (String command: commands.split("")) {
+            this.executeCommand(command);
+        }
     }
 
     public void executeCommand(String command) {

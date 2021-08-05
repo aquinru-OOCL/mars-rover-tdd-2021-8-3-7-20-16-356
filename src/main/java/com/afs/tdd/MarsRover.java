@@ -5,6 +5,7 @@ public class MarsRover{
     private int locationX;
     private int locationY;
     private String direction;
+    private String newDirection;
 
     public MarsRover(RoverStatus roverStatus) {
         this.roverStatus = roverStatus;
@@ -55,19 +56,23 @@ public class MarsRover{
     }
 
     private void turnLeft() {
-        String newDirection;
-        if ("N".equals(roverStatus.getDirection())) {
-            newDirection = "W";
-            roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
-        }else if ("S".equals(roverStatus.getDirection())) {
-            newDirection = "E";
-            roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
-        }else if ("E".equals(roverStatus.getDirection())) {
-            newDirection = "N";
-            roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
-        }else if ("W".equals(roverStatus.getDirection())) {
-            newDirection = "S";
-            roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
+        switch (direction) {
+            case "N":
+                newDirection = "W";
+                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+                break;
+            case "S":
+                newDirection = "E";
+                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+                break;
+            case "E":
+                newDirection = "N";
+                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+                break;
+            case "W":
+                newDirection = "S";
+                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+                break;
         }
     }
 

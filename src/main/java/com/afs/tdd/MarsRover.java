@@ -69,6 +69,9 @@ public class MarsRover{
         }else if ("E".equals(roverStatus.getDirection())) {
             newDirection = "S";
             roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
+        }else if ("W".equals(roverStatus.getDirection())) {
+            newDirection = "N";
+            roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
         }
     }
 

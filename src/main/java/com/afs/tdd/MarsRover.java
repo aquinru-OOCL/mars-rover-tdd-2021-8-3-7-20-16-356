@@ -14,8 +14,10 @@ public class MarsRover{
     public void executeCommand(String command) {
         if ("M".equals(command)) {
             move();
-        }if ("L".equals(command)) {
+        }else if ("L".equals(command)) {
             turnLeft();
+        }else if ("R".equals(command)) {
+            turnRight();
         }
     }
 
@@ -52,6 +54,14 @@ public class MarsRover{
             roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
         }else if ("W".equals(roverStatus.getDirection())) {
             newDirection = "S";
+            roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
+        }
+    }
+
+    private void turnRight() {
+        String newDirection;
+        if ("N".equals(roverStatus.getDirection())) {
+            newDirection = "E";
             roverStatus = new RoverStatus(roverStatus.getLocationX(), roverStatus.getLocationY(), newDirection);
         }
     }

@@ -1,11 +1,14 @@
 package com.afs.tdd;
 
 public class MarsRover{
-    private RoverStatus roverStatus;
-    private int locationX;
-    private int locationY;
-    private String direction;
-    private String newDirection;
+    private final RoverStatus roverStatus;
+    private static final String MOVE = "M";
+    private static final String LEFT = "L";
+    private static final String RIGHT = "R";
+    private static final String NORTH = "N";
+    private static final String SOUTH = "S";
+    private static final String EAST = "E";
+    private static final String WEST = "W";
 
     public MarsRover(RoverStatus roverStatus) {
         this.roverStatus = roverStatus;
@@ -23,18 +26,14 @@ public class MarsRover{
     }
 
     public void executeCommand(String command) {
-        locationX = roverStatus.getLocationX();
-        locationY = roverStatus.getLocationY();
-        direction = roverStatus.getDirection();
-
         switch (command) {
-            case "M":
+            case MOVE:
                 move();
                 break;
-            case "L":
+            case LEFT:
                 turnLeft();
                 break;
-            case "R":
+            case RIGHT:
                 turnRight();
                 break;
         }
@@ -42,63 +41,51 @@ public class MarsRover{
 
     private void move() {
         switch (roverStatus.getDirection()) {
-            case "N":
-                locationY++;
-                roverStatus = new RoverStatus(locationX, locationY, direction);
+            case NORTH:
+                roverStatus.incrementY();
                 break;
-            case "S":
-                locationY--;
-                roverStatus = new RoverStatus(locationX, locationY, direction);
+            case SOUTH:
+                roverStatus.decrementY();
                 break;
-            case "E":
-                locationX++;
-                roverStatus = new RoverStatus(locationX, locationY, direction);
+            case EAST:
+                roverStatus.incrementX();
                 break;
-            case "W":
-                locationX--;
-                roverStatus = new RoverStatus(locationX, locationY, direction);
+            case WEST:
+                roverStatus.decrementX();
                 break;
         }
     }
 
     private void turnLeft() {
-        switch (direction) {
-            case "N":
-                newDirection = "W";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+        switch (roverStatus.getDirection()) {
+            case NORTH:
+                roverStatus.setDirection(WEST);
                 break;
-            case "S":
-                newDirection = "E";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+            case SOUTH:
+                roverStatus.setDirection(EAST);
                 break;
-            case "E":
-                newDirection = "N";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+            case EAST:
+                roverStatus.setDirection(NORTH);
                 break;
-            case "W":
-                newDirection = "S";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+            case WEST:
+                roverStatus.setDirection(SOUTH);
                 break;
         }
     }
 
     private void turnRight() {
-        switch (direction) {
-            case "N":
-                newDirection = "E";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+        switch (roverStatus.getDirection()) {
+            case NORTH:
+                roverStatus.setDirection(EAST);
                 break;
-            case "S":
-                newDirection = "W";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+            case SOUTH:
+                roverStatus.setDirection(WEST);
                 break;
-            case "E":
-                newDirection = "S";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+            case EAST:
+                roverStatus.setDirection(SOUTH);
                 break;
-            case "W":
-                newDirection = "N";
-                roverStatus = new RoverStatus(locationX, locationY, newDirection);
+            case WEST:
+                roverStatus.setDirection(NORTH);
                 break;
         }
     }
